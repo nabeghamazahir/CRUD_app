@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostMate: Home</title>
+    <style>
+      * {
+        font-family: sans-serif;
+        margin: 0 auto;
+        text-align: center;
+      }
+      img {
+        height: 100px;
+      }
+      hr{
+        width: 55vw;
+        
+      }
+      .post{
+        border: 1px grey solid;
+        margin-top: 20px;
+        width: 60vw;
+      }
+      footer{
+        line-height: 45vw;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>PostMate: Write your own blogs</h1>
+    {% if current_user() %}
+    <h3>Welcome to the blog {{ current_user()['first_name'] }}</h3>
+    <section class="controls">
+      <form action="/sessions/delete" method="POST">
+        <button>Log out</button>
+      </form>
+    </section>
+    <main>
+        <section class="post">
+            <h2>My First Blog</h2>
+            <hr>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis minima ratione, veniam nulla ut fugit nesciunt. Dolores vero, dignissimos illum atque harum quas veniam ipsum facilis maiores fugiat odio aspernatur.</p>
+        </section>
+        <section class="post">
+            <h2>My Second Blog</h2>
+            <hr>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis minima ratione, veniam nulla ut fugit nesciunt. Dolores vero, dignissimos illum atque harum quas veniam ipsum facilis maiores fugiat odio aspernatur.</p>
+        </section>
+        
+    </main>
+   
+
+    {% else %}
+    <a href="/users/new">Sign up</a>
+    <a href="/sessions/new">Log in</a>
+    {% endif %}
+
+    <footer>
+        Copyrights @ 2023 PostMate Inc.
+    </footer>
+  </body>
+</html>
