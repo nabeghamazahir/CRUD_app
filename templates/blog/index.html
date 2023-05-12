@@ -37,19 +37,27 @@
       <form action="/sessions/delete" method="POST">
         <button>Log out</button>
       </form>
+      <form action="/blog/post" method="POST">
+        <label for="">Title:</label>
+        <input type="text" name="title">
+        <hr>
+        <label for="">Write about your day:</label>
+        <hr>
+        <textarea name="body" rows="4" cols="50">
+            
+        </textarea>
+        <hr>
+        <button>Add a new post</button>
+      </form>
     </section>
     <main>
+        {% for post in posts: %}
         <section class="post">
-            <h2>My First Blog</h2>
+            <h2>{{ post['title'] }}</h2>
             <hr>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis minima ratione, veniam nulla ut fugit nesciunt. Dolores vero, dignissimos illum atque harum quas veniam ipsum facilis maiores fugiat odio aspernatur.</p>
+            <p> {{ post['body'] }}</p>
         </section>
-        <section class="post">
-            <h2>My Second Blog</h2>
-            <hr>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis minima ratione, veniam nulla ut fugit nesciunt. Dolores vero, dignissimos illum atque harum quas veniam ipsum facilis maiores fugiat odio aspernatur.</p>
-        </section>
-        
+        {% endfor %}
     </main>
    
 
