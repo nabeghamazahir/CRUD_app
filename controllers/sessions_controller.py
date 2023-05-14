@@ -5,6 +5,9 @@ import bcrypt
 def new():
   return render_template('/sessions/new.html')
 
+def post():
+  return render_template('/sessions/post.html')
+
 def create():
   email = request.form.get('email')
   password = request.form.get('password')

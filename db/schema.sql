@@ -16,3 +16,5 @@ CREATE TABLE posts (
   body TEXT NOT NULL
 );
 
+ALTER TABLE posts
+ADD COLUMN category TEXT;

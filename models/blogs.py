@@ -2,5 +2,6 @@ from db.db import sql
 
 def all_posts():
   return sql('SELECT * FROM posts')
-def create_post(title, body):
-  sql('INSERT INTO posts(title, body) VALUES(%s, %s) RETURNING *', [title, body])
+
+def create_post(title, body, category):
+  sql('INSERT INTO posts(title, body, category) VALUES(%s, %s, %s) RETURNING *', [title, body, category])

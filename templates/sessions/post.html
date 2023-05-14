@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>log in</title>
+    <title>PostMate: Write a Post</title>
     <style>
       body {
         background: #728eb2;
@@ -18,7 +18,7 @@
 
       /* Set up some variables for reuse */
       :root {
-        --primary-color: #5578df;
+		--primary-color: #5578df;
         --secondary-color: #ccc;
         --font-family: Arial, sans-serif;
         --content-width: 600px;
@@ -51,8 +51,9 @@
         font-size: 24px;
         font-weight: bold;
         margin-right: auto;
+        text-transform: uppercase;
       }
-      .button {
+      .logout-button {
         display: inline-block;
         background-color: transparent;
         color: white;
@@ -67,24 +68,49 @@
         color: var(--primary-color);
       }
 
-      /* Set up main style */
-      main {
-        margin: 50px auto;
-        border-radius: 20px;
-        border: #333 1px solid;
-        width: fit-content;
-        padding: 50px;
+      /* Set up form styles */
+      form {
+        max-width: var(--content-width);
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid var(--secondary-color);
+        border-radius: 5px;
+        background-color: white;
       }
-
-      label,
-      button {
+      label {
         display: block;
-        margin-top: 10px;
+        margin-bottom: 10px;
         font-weight: bold;
       }
-
-      button {
-        padding: 5px;
+      input[type="text"],
+      select {
+        display: block;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid var(--secondary-color);
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      textarea {
+        display: block;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid var(--secondary-color);
+        border-radius: 5px;
+        width: 100%;
+        height: 200px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
       }
 
       /* Set up footer styles */
@@ -100,21 +126,29 @@
   <body>
     <header>
       <div class="logo">
-        <h1>PostMate</h1>
+        <h1>Blog App</h1>
       </div>
+      <button class="logout-button">Logout</button>
     </header>
+
     <main>
-      <section>
-        <form action="/sessions" method="POST">
-          <label for="">Email:</label>
-          <input type="text" name="email" />
+      <form action="/blog/post" method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required />
 
-          <label for="">Password:</label>
-          <input type="password" name="password" />
+        <label for="description">Description:</label>
+        <textarea id="description" name="body"></textarea>
 
-          <button>Log in</button>
-        </form>
-      </section>
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+          <option value="travel">Travel</option>
+          <option value="lifestyle">Lifestyle</option>
+          <option value="tech">Tech</option>
+          <option value="movies">Movies</option>
+        </select>
+
+        <input type="submit" value="Submit" />
+      </form>
     </main>
 
     <footer>

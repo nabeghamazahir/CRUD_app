@@ -11,5 +11,7 @@ def index():
 def create():
   title = request.form.get('title')
   body = request.form.get('body')
-  create_post(title, body)
+  category = request.form.get('category')
+  category = str(category)
+  create_post(title, body, category)
   return redirect('/')

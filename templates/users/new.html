@@ -1,43 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        * {
-        font-family: sans-serif;
+      body {
+        background: #728eb2;
       }
-        label, input {
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <h1>Sign up</h1>
-    <section>
-        <form action="/users" method="POST">
-            <label for="">First Name:</label>
-            <input type="text" name="first_name">
-        
-            <label for="">Last Name:</label>
-            <input type="text" name="last_name">
-        
-            <label for="">Email:</label>
-            <input type="text" name="email">
 
-            <label for="">Username:</label>
-            <input type="text" name="username">
-        
-            <label for="">Password:</label>
-            <input type="password" name="password">
-        
-            <button>Sign up</button>
-            </form>
-            <p>{{ message }}</p>
-    </section>
-    
-    
-</body>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Set up some variables for reuse */
+      :root {
+        --primary-color: #5578df;
+        --secondary-color: #ccc;
+        --font-family: Arial, sans-serif;
+        --content-width: 600px;
+      }
+
+      /* Set up global styles */
+      body {
+        font-family: var(--font-family);
+        color: #333;
+        background-color: #f9f9f9;
+      }
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* Set up header styles */
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--primary-color);
+        padding: 10px 20px;
+        color: white;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        margin-right: auto;
+      }
+      .button {
+        display: inline-block;
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+      .logout-button:hover {
+        background-color: white;
+        color: var(--primary-color);
+      }
+
+      /* Set up main style */
+      main {
+        margin: 50px auto;
+        border-radius: 20px;
+        border: #333 1px solid;
+        width: fit-content;
+        padding: 50px;
+      }
+
+      label,
+      button {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      button {
+        padding: 5px;
+      }
+
+      /* Set up footer styles */
+      footer {
+        background-color: var(--secondary-color);
+        padding: 10px 20px;
+        color: #999;
+        text-align: center;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>PostMate</h1>
+      </div>
+    </header>
+    <main>
+      <section>
+        <form action="/users" method="POST">
+          <label for="">First Name:</label>
+          <input type="text" name="first_name" />
+
+          <label for="">Last Name:</label>
+          <input type="text" name="last_name" />
+
+          <label for="">Email:</label>
+          <input type="text" name="email" />
+
+          <label for="">Username:</label>
+          <input type="text" name="username" />
+
+          <label for="">Password:</label>
+          <input type="password" name="password" />
+
+          <button>Sign up</button>
+        </form>
+        <p>{{ message }}</p>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 Blog App. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
