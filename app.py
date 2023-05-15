@@ -9,8 +9,8 @@ load_dotenv()
 
 
 app = Flask(__name__)
-FLASK_SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "pretend key for testing only")
-app.config['FLASK_SECRET_KEY'] = FLASK_SECRET_KEY
+SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "pretend key for testing only")
+app.config['SECRET_KEY'] = SECRET_KEY
 
 app.register_blueprint(blog_routes, url_prefix='/blog')
 app.register_blueprint(users_routes, url_prefix='/users')
