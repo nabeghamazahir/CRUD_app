@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DB_URL = f"dbname={os.getenv('DB_URL')}"
+DB_URL = os.environ.get("DATABASE_URL", "dbname=post_mate")
 def sql(query, parameters=[]):
   connection = psycopg2.connect(DB_URL) 
   cursor = connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor) 
