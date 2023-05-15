@@ -8,8 +8,9 @@ def create_post(title, body, category, user_id):
 
 def myblog(id):
   return sql('SELECT * FROM posts WHERE id =%s',[id])
+
 def find_post_owner(id):
-  return sql('SELECT user_id FROM posts where id=%s',[id])
+  return sql('SELECT user_id FROM posts WHERE id=%s',[id])
 
 def update(title, body, category, user_id, id):
   sql('UPDATE posts SET title=%s, body=%s, category = %s, user_id=%s WHERE id=%s RETURNING *', [title, body, category, user_id, id])

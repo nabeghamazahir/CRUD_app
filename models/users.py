@@ -12,6 +12,7 @@ def find_user_by_email(email):
     return users[0] # return the first user.
   else:
     return None
+  
 def find_user_by_id(id):
   users = sql('SELECT * FROM users WHERE id = %s', [id])
   return users[0]
