@@ -52,11 +52,6 @@
         font-weight: bold;
         margin-right: auto;
       }
-/* Updated css */
-      .logo a {
-        color: white;
-        text-decoration: none;
-      }
       .button {
         display: inline-block;
         background-color: transparent;
@@ -72,33 +67,6 @@
         background-color: white;
         color: var(--primary-color);
       }
-
-
-      /* Categories */
-      nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  background-color: #333;
-  text-align: center;
-  
-}
-
-nav ul li {
-  display: inline-block;
-}
-
-nav ul li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-nav ul li a:hover {
-  background-color: #111;
-}
 
       /* Set up main style */
       main {
@@ -139,21 +107,13 @@ nav ul li a:hover {
     {% if current_user() %}
     <header>
       <div class="logo">
-        
-        <a href="/"><h1>PostMate</h1></a>
+        <h1>PostMate</h1>
       </div>
       <form action="/sessions/delete" method="POST">
         <button class="button">Logout</button>
       </form>
     </header>
-    <nav>
-      <ul>
-        <li><a href="/blog/category?c=travel">Travel</a></li>
-        <li><a href="/blog/category?c=tech">Tech</a></li>
-        <li><a href="/blog/category?c=movies">Movies</a></li>
-        <li><a href="/blog/category?c=lifestyle">Lifestyle</a></li>
-      </ul>
-    </nav>
+    
     <main>
       <section class="top">
         <div>
@@ -163,6 +123,32 @@ nav ul li a:hover {
           <a href="/sessions/post"> write a new post</a>
         </section>
       </section>
+      {% if current_user()['id'] == post_owner %}
+      <p>I am the post owner</p>
+      
+      <section class="posts">
+        
+        {% for post in posts: %}
+        <section class="controls">
+            <!-- <a href="">Edit</a> -->
+            <form action="/blog/{{ post['id'] }}/edit">
+                <button>Edit</button>
+              </form>
+    
+            <form action="/blog/{{ post['id'] }}/delete" method="POST">
+              <button>Delete</button>
+            </form>
+          </section>
+      <section class="post">
+        <a href="/sessions/post/{{ post['id'] }}"><h2>{{ post['title'] }}</h2></a>
+        
+        <hr />
+        <p>{{ post['body'] }}</p>
+      </section>
+      {% endfor %}
+
+      </section>
+      {% else %}
       <section class="posts">
         {% for post in posts: %}
       <section class="post">
@@ -174,6 +160,7 @@ nav ul li a:hover {
       {% endfor %}
 
       </section>
+      {% endif %}
       
     </main>
 

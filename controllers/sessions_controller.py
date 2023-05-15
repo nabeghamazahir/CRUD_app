@@ -1,5 +1,7 @@
 from flask import render_template, request, redirect, session
 from models.users import find_user_by_email
+from models.blogs import myblog, find_post_owner
+from services.session_info import current_user
 import bcrypt
 
 def new():
@@ -25,3 +27,8 @@ def create():
 def delete():
   session.clear() # logs the user out
   return redirect('/')
+
+def single_post(id):
+  post = myblog(id)
+  post_owner = find_post_owner(id)[0]['user_id']
+  return render_template('/sessions/myblog.html', posts = post, current_user = current_user, post_owner = post_owner )

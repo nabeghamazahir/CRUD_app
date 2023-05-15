@@ -13,8 +13,10 @@ CREATE TABLE users(
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,
-  body TEXT NOT NULL
+  body TEXT NOT NULL,
+  category TEXT,
+  user_id INTEGER NOT NULL
 );
 
 ALTER TABLE posts
-ADD COLUMN category TEXT;
+ADD COLUMN users_id TEXT;
