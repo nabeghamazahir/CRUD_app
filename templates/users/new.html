@@ -66,6 +66,34 @@
         background-color: white;
         color: var(--primary-color);
       }
+      .logo a {
+        color: white;
+        text-decoration: none;
+      }
+      /* Categories */
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+        text-align: center;
+      }
+
+      nav ul li {
+        display: inline-block;
+      }
+
+      nav ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      nav ul li a:hover {
+        background-color: #111;
+      }
 
       /* Set up main style */
       main {
@@ -100,9 +128,17 @@
   <body>
     <header>
       <div class="logo">
-        <h1>PostMate</h1>
+        <a href="/"><h1>PostMate</h1></a>
       </div>
     </header>
+    <nav>
+      <ul>
+        <li><a href="/blog/category?c=travel">Travel</a></li>
+        <li><a href="/blog/category?c=tech">Tech</a></li>
+        <li><a href="/blog/category?c=movies">Movies</a></li>
+        <li><a href="/blog/category?c=lifestyle">Lifestyle</a></li>
+      </ul>
+    </nav>
     <main>
       <section>
         <form action="/users" method="POST">

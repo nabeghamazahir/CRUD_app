@@ -52,21 +52,79 @@
         font-weight: bold;
         margin-right: auto;
       }
-      .button {
+      /* Updated css */
+
+      .lg-button {
         display: inline-block;
         background-color: transparent;
         color: white;
         border: 2px solid white;
         padding: 5px 10px;
         border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
         margin-left: 10px;
       }
-      .logout-button:hover {
+      .lg-button:hover {
         background-color: white;
         color: var(--primary-color);
       }
+
+
+      .logo a {
+        color: white;
+        text-decoration: none;
+      }
+      /* Categories */
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+        text-align: center;
+      }
+
+      nav ul li {
+        display: inline-block;
+      }
+
+      nav ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      nav ul li a:hover {
+        background-color: #111;
+      }
+
+      /* new blog css */
+      .controls-blog{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .controls-blog a{
+        text-decoration: none;
+      }
+
+
+      .new-blog-button {
+        background-color: #444857;
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .new-blog-button:hover {
+      background-color: #9b9b9b;
+    }
+
 
       /* Set up main style */
       main {
@@ -75,17 +133,16 @@
         justify-content: center;
         align-items: center;
         margin: 10px 0;
-        
       }
 
-      .posts{
+      .posts {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
       }
 
-      .post{
+      .post {
         width: 70vw;
         padding: 20px;
         border-radius: 20px;
@@ -100,68 +157,101 @@
         text-align: center;
         font-size: 14px;
       }
+
+      .controls-post{
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        justify-content: flex-end;
+        
+        
+      }
+      .controls-post form button{
+        padding: 5px;
+        background-color: white;
+        color: #333;
+        
+      }
+      .controls-post form button:hover{
+        background-color: gray ;
+        
+      }
+      
     </style>
   </head>
- 
+
   <body>
     {% if current_user() %}
     <header>
       <div class="logo">
-        <h1>PostMate</h1>
+        <a href="/"><h1>PostMate</h1></a>
       </div>
       <form action="/sessions/delete" method="POST">
-        <button class="button">Logout</button>
+        <button class="lg-button">Logout</button>
       </form>
     </header>
-    
+    <nav>
+      <ul>
+        <li><a href="/blog/category?c=travel">Travel</a></li>
+        <li><a href="/blog/category?c=tech">Tech</a></li>
+        <li><a href="/blog/category?c=movies">Movies</a></li>
+        <li><a href="/blog/category?c=lifestyle">Lifestyle</a></li>
+      </ul>
+    </nav>
+
     <main>
       <section class="top">
         <div>
           <h3>Welcome to the blog {{ current_user()['first_name'] }}</h3>
         </div>
-        <section class="controls">
-          <a href="/sessions/post"> write a new post</a>
+        <section class="controls-blog">
+          <a href="/sessions/post" class="new-blog-button">Create New Blog</a>
         </section>
       </section>
       {% if current_user()['id'] == post_owner %}
-      <p>I am the post owner</p>
-      
+
       <section class="posts">
-        
         {% for post in posts: %}
-        <section class="controls">
-            <!-- <a href="">Edit</a> -->
+        <section class="controls-post">
+          <!-- <a href="">Edit</a> -->
+          <section class="edit">
             <form action="/blog/{{ post['id'] }}/edit">
-                <button>Edit</button>
-              </form>
-    
+              <button>Edit</button>
+            </form>
+          </section>
+          <section class="delete">
             <form action="/blog/{{ post['id'] }}/delete" method="POST">
               <button>Delete</button>
             </form>
           </section>
-      <section class="post">
-        <a href="/sessions/post/{{ post['id'] }}"><h2>{{ post['title'] }}</h2></a>
-        
-        <hr />
-        <p>{{ post['body'] }}</p>
-      </section>
-      {% endfor %}
+          
 
+          
+        </section>
+        <section class="post">
+          <a href="/sessions/post/{{ post['id'] }}"
+            ><h2>{{ post['title'] }}</h2></a
+          >
+
+          <hr />
+          <p>{{ post['body'] }}</p>
+        </section>
+        {% endfor %}
       </section>
       {% else %}
       <section class="posts">
         {% for post in posts: %}
-      <section class="post">
-        <a href="/sessions/post/{{ post['id'] }}"><h2>{{ post['title'] }}</h2></a>
-        
-        <hr />
-        <p>{{ post['body'] }}</p>
-      </section>
-      {% endfor %}
+        <section class="post">
+          <a href="/sessions/post/{{ post['id'] }}"
+            ><h2>{{ post['title'] }}</h2></a
+          >
 
+          <hr />
+          <p>{{ post['body'] }}</p>
+        </section>
+        {% endfor %}
       </section>
       {% endif %}
-      
     </main>
 
     <footer>
@@ -171,18 +261,28 @@
     {% else %}
     <header>
       <div class="logo">
-        <h1>PostMate</h1>
+        <a href="/"><h1>PostMate</h1></a>
       </div>
-      <form action="/users/new"><button class="button">Sign Up</button></form>
+      <form action="/users/new"><button class="lg-button">Sign Up</button></form>
       <form action="/sessions/new">
-        <button class="button">Log In</button>
+        <button class="lg-button">Log In</button>
       </form>
     </header>
+    <nav>
+      <ul>
+        <li><a href="/blog/category?c=travel">Travel</a></li>
+        <li><a href="/blog/category?c=tech">Tech</a></li>
+        <li><a href="/blog/category?c=movies">Movies</a></li>
+        <li><a href="/blog/category?c=lifestyle">Lifestyle</a></li>
+      </ul>
+    </nav>
 
     <main>
       {% for post in posts: %}
       <section class="post">
-        <h2>{{ post['title'] }}</h2>
+        <a href="/sessions/post/{{ post['id'] }}"
+          ><h2>{{ post['title'] }}</h2></a
+        >
         <hr />
         <p>{{ post['body'] }}</p>
       </section>
