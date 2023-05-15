@@ -1,16 +1,14 @@
-import os
 import psycopg2
 import psycopg2.extras
-from dotenv import load_dotenv
-
-load_dotenv()
+import os
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=post_mate")
 def sql(query, parameters=[]):
   connection = psycopg2.connect(DB_URL) 
-  cursor = connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor) 
+  cursor = connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
   cursor.execute(query, parameters) 
   results = cursor.fetchall()
-  connection.commit() 
+  connection.commit()
   connection.close()
   return results
+
